@@ -1,8 +1,13 @@
 import { GlowFilter, GlowFilterDef } from "../effects/GlowFilter";
-export default ({ width, height, color }) => {
+export default ({ width, height, color, seed }) => {
+
+  // @TODO actually implement seed
+  const strokeWidthVals = [1,2,3,4,5,6,7];
+  const strokeWidth = strokeWidthVals[seed % strokeWidthVals.length] ;
+
   const lineProps = {
     stroke: color,
-    strokeWidth: 6,
+    strokeWidth,
     fill: "rgba(0,0,0,0.75)"
   };
   return (
