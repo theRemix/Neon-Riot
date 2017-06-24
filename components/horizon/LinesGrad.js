@@ -1,12 +1,24 @@
 import { GlowFilter, GlowFilterDef } from "../effects/GlowFilter";
-export default ({ width, height, color, seed }) => {
+export default ({ horizonPosition, color, seed }) => {
+  /*
+   * Should know horizon position
+   *   - fills from horizon, up to random height
+   */
 
   const lineProps = {
     stroke: color,
     fill: "rgba(0,0,0,0.75)"
-  };
+  }
+
+  const minHeight = 100
+  const numHeightVals = 1000
+  const heights = Array(numHeightVals).fill(null)
+    .map((_,i) => ( ( horizonPosition - minHeight ) / numHeightVals * i ) + minHeight)
+
+  const height = heights[seed % numHeightVals]
+
   return (
-    <svg width={width} height={height}>
+    <svg width="100%" height={height} y={horizonPosition-height} viewBox="0 0 1360.72 249.97" preserveAspectRatio="none">
       <defs>
         <GlowFilterDef color={color} />
       </defs>

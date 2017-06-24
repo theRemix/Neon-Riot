@@ -1,21 +1,44 @@
 import { GlowFilter, GlowFilterDef } from "../effects/GlowFilter";
-export default ({ width, height, color, seed }) => {
+export default ({ horizonPosition, color, seed }) => {
 
   // @TODO actually implement seed
-  const strokeWidthVals = [1,2,3,4,5,6,7];
-  const strokeWidth = strokeWidthVals[seed % strokeWidthVals.length] ;
+  const strokeWidthVals = [1,2,3,4,5,6,7]
+  const strokeWidth = strokeWidthVals[seed % strokeWidthVals.length]
 
   const lineProps = {
     stroke: color,
     strokeWidth,
     fill: "rgba(0,0,0,0.75)"
-  };
+  }
+
+  const minCircumference = 200
+  const maxCircumference = 500
+  const numCircumferenceVals = 1000
+  const circumferences = Array(numCircumferenceVals).fill(null)
+    .map((_,i) => ( ( maxCircumference - minCircumference ) / numCircumferenceVals * i ) + minCircumference )
+
+  const circumference = circumferences[seed % numCircumferenceVals];
+
+  const minY = 200
+  const numYVals = 1000
+  const yVals = Array(numYVals).fill(null)
+    .map((_,i) => ( ( horizonPosition - minY ) / numYVals * i) + minY )
+
+  const y = yVals[seed % numYVals]
+
+  const offsetForGlow = 5
+
   return (
-    <svg width={width} height={height}>
+    <svg
+      width={circumference+offsetForGlow}
+      height={circumference+offsetForGlow}
+      y={y}
+      viewBox="0 0 265.85 257.71"
+      preserveAspectRatio="none">
       <defs>
         <GlowFilterDef color={color} />
       </defs>
-      <g transform="translate(5,5)" filter={GlowFilter}>
+      <g transform={ `translate(${offsetForGlow},${offsetForGlow})` } filter={GlowFilter}>
         <line { ...lineProps } x1="96.6" y1="3" x2="159.25" y2="3" />
         <line { ...lineProps } x1="70.19" y1="12.87" x2="185.66" y2="12.87"/>
         <line { ...lineProps } x1="53.84" y1="22.74" x2="202.01" y2="22.74"/>
