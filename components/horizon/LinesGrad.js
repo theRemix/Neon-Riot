@@ -1,4 +1,4 @@
-import { GlowFilter, GlowFilterDef } from "../effects/GlowFilter";
+import GlowFilterProvider from "../effects/GlowFilter";
 export default ({ horizonPosition, color, seed }) => {
   /*
    * Should know horizon position
@@ -16,6 +16,11 @@ export default ({ horizonPosition, color, seed }) => {
     .map((_,i) => ( ( horizonPosition - minHeight ) / numHeightVals * i ) + minHeight)
 
   const height = heights[seed % numHeightVals]
+
+  const {
+    GlowFilter,
+    GlowFilterDef
+  } = GlowFilterProvider()
 
   return (
     <svg width="100%" height={height} y={horizonPosition-height} viewBox="0 0 1360.72 249.97" preserveAspectRatio="none">

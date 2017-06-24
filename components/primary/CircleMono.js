@@ -1,4 +1,4 @@
-import { GlowFilter, GlowFilterDef } from "../effects/GlowFilter";
+import GlowFilterProvider from "../effects/GlowFilter";
 export default ({ horizonPosition, color, seed }) => {
 
   // @TODO actually implement seed
@@ -27,6 +27,11 @@ export default ({ horizonPosition, color, seed }) => {
   const y = yVals[seed % numYVals]
 
   const offsetForGlow = 5
+
+  const {
+    GlowFilter,
+    GlowFilterDef
+  } = GlowFilterProvider()
 
   return (
     <svg
