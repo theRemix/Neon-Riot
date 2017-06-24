@@ -1,10 +1,18 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { initStore, startClock, addCount, serverRenderClock } from '../store'
+import { initStore, startClock, addCount, serverRenderClock } from '../lib/store'
 import withRedux from 'next-redux-wrapper'
-import Page from '../components/Page'
+import TrianglePrism from '../components/primary/TrianglePrism'
 
-class Counter extends React.Component {
+const Styles = () => (
+  <style jsx>{`
+    div {
+      background-color: #000;
+    }
+  `}</style>
+)
+
+class NeonRiot extends React.Component {
   static getInitialProps ({ store, isServer }) {
     store.dispatch(serverRenderClock(isServer))
     store.dispatch(addCount())
@@ -22,7 +30,11 @@ class Counter extends React.Component {
 
   render () {
     return (
-      <Page title='Index Page' linkTo='/other' />
+      <div>
+        <TrianglePrism width="500" height="500"/>
+
+        <Styles />
+      </div>
     )
   }
 }
@@ -34,4 +46,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default withRedux(initStore, null, mapDispatchToProps)(Counter)
+export default withRedux(initStore, null, mapDispatchToProps)(NeonRiot)

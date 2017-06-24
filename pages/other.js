@@ -1,6 +1,6 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { initStore, startClock, addCount, serverRenderClock } from '../store'
+import { initStore, startClock, addCount, serverRenderClock } from '../lib/store'
 import withRedux from 'next-redux-wrapper'
 import Page from '../components/Page'
 
