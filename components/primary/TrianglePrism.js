@@ -1,5 +1,12 @@
-import { GlowFilter, GlowFilterDef } from "../effects/GlowFilter";
+import GlowFilterProvider from "../effects/GlowFilter"
+
 export default ({ width, height, color }) => {
+
+  const {
+    GlowFilter,
+    GlowFilterDef
+  } = GlowFilterProvider()
+
   return (
     <svg width={width} height={height} >
       <defs>
