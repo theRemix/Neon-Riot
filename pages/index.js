@@ -3,7 +3,8 @@ import { bindActionCreators } from 'redux'
 import { initStore, startClock, addCount, serverRenderClock } from '../lib/store'
 import withRedux from 'next-redux-wrapper'
 // import TrianglePrism from '../components/primary/TrianglePrism'
-import CircleMono from '../components/primary/CircleMono'
+// import CircleMono from '../components/primary/CircleMono'
+import LinesGrad from '../components/horizon/LinesGrad'
 
 const Styles = () => (
   <style jsx>{`
@@ -37,9 +38,10 @@ class NeonRiot extends React.Component {
       <div>
         {/*
           <TrianglePrism width="500" height="500" color="#DC00FF" />
+          <CircleMono width="500" height="500" color="#DC00FF" seed={seed} />
         */}
 
-        <CircleMono width="500" height="500" color="#DC00FF" seed={seed} />
+        <LinesGrad width="500" height="500" color="#DC00FF" seed={seed} />
 
         <Styles />
       </div>
