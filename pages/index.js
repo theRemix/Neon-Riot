@@ -2,7 +2,8 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import { initStore, startClock, addCount, serverRenderClock } from '../lib/store'
 import withRedux from 'next-redux-wrapper'
-import TrianglePrism from '../components/primary/TrianglePrism'
+// import TrianglePrism from '../components/primary/TrianglePrism'
+import CircleMonoThick from '../components/primary/CircleMonoThick'
 
 const Styles = () => (
   <style jsx>{`
@@ -31,7 +32,11 @@ class NeonRiot extends React.Component {
   render () {
     return (
       <div>
-        <TrianglePrism width="500" height="500"/>
+        {/*
+          <TrianglePrism width="500" height="500" color="#DC00FF" />
+        */}
+
+        <CircleMonoThick width="500" height="500" color="#DC00FF" />
 
         <Styles />
       </div>
