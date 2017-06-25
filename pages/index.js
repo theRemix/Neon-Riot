@@ -10,6 +10,7 @@ const Styles = () => (
   <style jsx>{`
     body {
       background-color: #000;
+      background-image: url(http://api.thumbr.it/whitenoise-100x100.png?background=00000000&noise=555555&density=14&opacity=40);
     }
     #container {
       position: absolute;
@@ -67,7 +68,7 @@ class NeonRiot extends React.Component {
       windowSize,
       className,
       seed
-    })
+    });
 
     const BG = seed.bg;
     const Floor = seed.floor;
@@ -77,7 +78,15 @@ class NeonRiot extends React.Component {
     const Primary = seed.primary.shape;
 
     return (
-      <svg id="container">
+      <svg id="container" mask="url(#radialMask)">
+        <defs>
+          <filter id="radialMaskFilter">
+            <feGaussianBlur stdDeviation="100"/>
+          </filter>
+          <mask id="radialMask">
+            <ellipse cx="50%" cy="40%" rx="125%" ry="50%" fill="white" filter="url(#radialMaskFilter)" />
+          </mask>
+        </defs>
 
         <BG { ...setPropsFor('layer-bg') } />
         <Floor { ...setPropsFor('layer-floor') } />
