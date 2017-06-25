@@ -1,6 +1,6 @@
 import GlowFilterProvider from "../effects/GlowFilter";
 
-export default ({ windowWidth = 0, horizonPosition, color, seed }) => {
+export default ({ windowSize, horizonPosition, color, seed }) => {
   // @TODO actually implement seed
   const strokeWidthVals = [1,2,3,4,5,6,7]
   const strokeWidth = strokeWidthVals[seed % strokeWidthVals.length]
@@ -40,7 +40,7 @@ export default ({ windowWidth = 0, horizonPosition, color, seed }) => {
       width={size}
       height={size}
       y={y}
-      x={(windowWidth / 2) - (size / 2)}
+      x={(windowSize.width / 2) - (size / 2)}
       viewBox="0 0 265.85 257.71"
       preserveAspectRatio="none">
       <defs>
