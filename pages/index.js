@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../lib/store'
 import * as Actions from '../lib/actions';
+import Seed from '../lib/Seed';
+
 // import TrianglePrism from '../components/primary/TrianglePrism'
 import CircleMono from '../components/primary/CircleMono'
 import TriangleOutline from '../components/secondary/TriangleOutline'
@@ -54,16 +56,14 @@ class NeonRiot extends React.Component {
 
   render () {
     const { windowWidth } = this.props;
-    // @TODO actually implement seed
-    const seed = Math.floor(Math.random()*1000000);
 
-    const minHorizonPosition = window.innerHeight / 4;
-    const maxHorizonPosition = minHorizonPosition * 3;
-    const numHorizonVals = 1000;
-    const horizonVals = Array(numHorizonVals).fill(null)
-      .map((_,i) => ( maxHorizonPosition - minHorizonPosition / numHorizonVals * i ));
+    // @TMP until seed is fully implemented
+    const oldSeed = Math.floor(Math.random()*1000000);
 
-    const horizonPosition = horizonVals[seed % numHorizonVals];
+    // @TODO actually implement input
+    const input = oldSeed.toString();
+
+    const seed = Seed( input );
 
     return (
       <svg id="container">
@@ -74,25 +74,25 @@ class NeonRiot extends React.Component {
 
         <Grid
           className="layer-floor"
-          horizonPosition={horizonPosition}
+          horizonPosition={seed.horizonY}
           color="#2222FF"
-          seed={seed} />
+          seed={oldSeed} />
         <LinesGrad
           className="layer-horizon"
-          horizonPosition={horizonPosition}
+          horizonPosition={seed.horizonY}
           color="#DC00FF"
-          seed={seed} />
+          seed={oldSeed} />
         <TriangleOutline
           className="layer-secondary"
-          horizonPosition={horizonPosition}
+          horizonPosition={seed.horizonY}
           color="#FA00CA"
-          seed={seed} />
+          seed={oldSeed} />
         <CircleMono
           windowWidth={windowWidth}
           className="layer-primary"
-          horizonPosition={horizonPosition}
+          horizonPosition={seed.horizonY}
           color="#FFCC00"
-          seed={seed} />
+          seed={oldSeed} />
 
         <Styles />
       </svg>
