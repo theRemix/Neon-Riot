@@ -6,9 +6,13 @@ import * as Actions from '../lib/actions';
 import Seed from '../lib/Seed';
 
 // import TrianglePrism from '../components/primary/TrianglePrism'
-import CircleMono from '../components/primary/CircleMono'
+// import LinesGrad from '../components/horizon/LinesGrad'
+// import CircleMono from '../components/primary/CircleMono'
 import TriangleOutline from '../components/secondary/TriangleOutline'
-import LinesGrad from '../components/horizon/LinesGrad'
+import TriangleMono from '../components/primary/TriangleMono'
+import TriangleSolid from '../components/secondary/TriangleSolid'
+import BGLinesGrad from '../components/bg/LinesGrad'
+import BarGraph from '../components/horizon/BarGraph'
 import Grid from '../components/floor/Grid'
 
 const Styles = () => (
@@ -27,12 +31,15 @@ const Styles = () => (
       position: absolute;
     }
     .layer-bg{
-      z-index: 5;
+      z-index: 6;
     }
     .layer-horizon{
-      z-index: 4;
+      z-index: 5;
     }
     .layer-floor{
+      z-index: 4;
+    }
+    .layer-tertiary{
       z-index: 3;
     }
     .layer-secondary{
@@ -73,27 +80,42 @@ class NeonRiot extends React.Component {
           <CircleMono width="500" height="500" color="#DC00FF" seed={seed} />
         */}
 
+        <BGLinesGrad
+          windowSize={windowSize}
+          className="layer-bg"
+          color="#121212"
+          seed={oldSeed} />
         <Grid
           windowSize={windowSize}
           className="layer-floor"
           horizonPosition={horizonPosition}
-          color="#2222FF"
+          color="#CD00CB"
           seed={oldSeed} />
-        <LinesGrad
+        <BarGraph
+          windowSize={windowSize}
           className="layer-horizon"
           horizonPosition={horizonPosition}
-          color="#DC00FF"
+          color="#FF49F3"
           seed={oldSeed} />
         <TriangleOutline
+          windowSize={windowSize}
+          className="layer-tertiary"
+          horizonPosition={horizonPosition}
+          color="#4FD4F7"
+          glowColor="#FF49F3"
+          seed={oldSeed} />
+        <TriangleSolid
+          windowSize={windowSize}
           className="layer-secondary"
           horizonPosition={horizonPosition}
-          color="#FA00CA"
+          color="#1566FE"
+          glowColor="#FF49F3"
           seed={oldSeed} />
-        <CircleMono
+        <TriangleMono
           windowSize={windowSize}
           className="layer-primary"
           horizonPosition={horizonPosition}
-          color="#FFCC00"
+          color="#FF00D0"
           seed={oldSeed} />
 
         <Styles />

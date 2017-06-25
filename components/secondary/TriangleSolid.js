@@ -1,13 +1,9 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-export default ({ horizonPosition, color, seed, windowSize }) => {
-
-  // @TODO actually implement seed
-  const strokeWidth = 1.2;
+export default ({ horizonPosition, color, seed, glowColor, windowSize }) => {
 
   const polyProps = {
-    stroke: color,
-    strokeWidth,
-    fill: "none"
+    strokeWidth: 0,
+    fill: color
   }
 
   // @TODO to come from constants
@@ -17,16 +13,15 @@ export default ({ horizonPosition, color, seed, windowSize }) => {
   };
 
   // @TODO to come from constants
-  const offsetFromPrimary = 50 ; // bottom of tertiary touches 66% height of primary
+  const offsetFromPrimary = -120 ; // top of secondary touches 66% height of primary
 
   const offsetForGlow = 5;
-
 
   const {
     GlowFilter,
     GlowFilterDef
   } = GlowFilterProvider()
-
+// transform={`rotate(90,${( size.width / 2 )},${( size.height / 2 )})` }
   return (
     <svg
       width={size.width+offsetForGlow}
@@ -34,11 +29,11 @@ export default ({ horizonPosition, color, seed, windowSize }) => {
       x={( windowSize.width / 2 ) - ( size.width / 2 )}
       y={( windowSize.height / 2 ) - ( size.height / 2 ) + offsetFromPrimary}
       transform={`rotate(180,${( windowSize.width / 2 )},${( windowSize.height / 2 )})` }
-      viewBox="0 0 203.17 175.95">
+      viewBox="0 0 199.19 172.5">
       <defs>
-        <GlowFilterDef color={color} />
+        <GlowFilterDef color={glowColor} />
       </defs>
-      <polygon { ...polyProps } filter={GlowFilter} points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
+      <polygon { ...polyProps } transform="translate(0,0)" filter={GlowFilter} points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
     </svg>
   )
 }

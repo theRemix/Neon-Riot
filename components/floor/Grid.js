@@ -23,7 +23,7 @@ export default ({ windowSize, horizonPosition, color, seed }) => {
   return (
     <svg width={width} x={x} height={height} y={horizonPosition} viewBox="0 0 2506.93 252.55" preserveAspectRatio="none">
       <defs>
-        <GlowFilterDef color={color} />
+        <GlowFilterDef color={color} strength="0.6"/>
       </defs>
       <g filter={GlowFilter}>
         <line { ...lineProps } x1="838.07" y1="0.9" x2="0.11" y2="252.17"/>
