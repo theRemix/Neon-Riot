@@ -45,7 +45,7 @@ const Styles = () => (
 class NeonRiot extends React.Component {
   componentDidMount () {
     const { actions } = this.props;
-    actions.getWindowWidth();
+    actions.getWindowSize();
   }
 
   componentWillUnmount () {
@@ -53,7 +53,7 @@ class NeonRiot extends React.Component {
   }
 
   render () {
-    const { windowWidth } = this.props;
+    const { windowSize } = this.props;
     // @TODO actually implement seed
     const seed = Math.floor(Math.random()*1000000);
 
