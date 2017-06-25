@@ -1,20 +1,10 @@
 import GlowFilterProvider from "../effects/GlowFilter";
 import { Layer } from "../../lib/constants";
 
-const COLORS = [
-  "#CD00CB",
-  "#FF49F3",
-  "#4FD4F7",
-  "#FF49F3",
-  "#1566FE",
-  "#FF49F3",
-  "#FF00D0"
-];
-
 export default ({ windowSize, seed, layer }) => {
 
-  const color = seed.select( seed.slices[2], COLORS );
-  const glowColor = seed.select( seed.slices[3], COLORS );
+  const color = seed[layer.toLowerCase()].color;
+  const glowColor = seed[layer.toLowerCase()].glowColor;
 
   const polyProps = {
     strokeWidth: 0,

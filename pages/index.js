@@ -70,9 +70,9 @@ class NeonRiot extends React.Component {
       seed
     });
 
-    const BG = seed.bg;
-    const Floor = seed.floor;
-    const Horizon = seed.horizon;
+    const BG = seed.bg.shape;
+    const Floor = seed.floor.shape;
+    const Horizon = seed.horizon.shape;
     const Tertiary = seed.tertiary.shape;
     const Secondary = seed.secondary.shape;
     const Primary = seed.primary.shape;
