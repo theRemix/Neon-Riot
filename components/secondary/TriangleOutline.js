@@ -1,4 +1,5 @@
 import GlowFilterProvider from "../effects/GlowFilter";
+import { Layer } from "../../lib/constants";
 
 const COLORS = [
   "#CD00CB",
@@ -10,7 +11,7 @@ const COLORS = [
   "#FF00D0"
 ];
 
-export default ({ windowSize, seed }) => {
+export default ({ windowSize, seed, layer }) => {
   // @TODO actually implement seed
   const strokeWidth = 1.2;
 
@@ -29,8 +30,11 @@ export default ({ windowSize, seed }) => {
     height : 400,
   };
 
+
   // @TODO to come from constants
-  const offsetFromPrimary = 50 ; // bottom of tertiary touches 66% height of primary
+  // Layer.SECONDARY top of secondary touches 66% height of primary
+  // Layer.TERTIARY bottom of tertiary touches 66% height of primary
+  const offsetFromPrimary = layer === Layer.SECONDARY ? -120 : 50 ;
 
   const offsetForGlow = 10;
 

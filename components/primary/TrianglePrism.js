@@ -41,7 +41,9 @@ export default ({ windowSize, seed }) => {
     <svg
       { ...size }
       x={( windowSize.width / 2 ) - ( size.width / 2 )}
-      y={( windowSize.height / 2 ) - ( size.height / 2 )}>
+      y={( windowSize.height / 2 ) - ( size.height / 2 )}
+      viewBox="0 0 240 240"
+      preserveAspectRatio="none">
       <defs>
         <GlowFilterDef color={glowColor} />
       </defs>

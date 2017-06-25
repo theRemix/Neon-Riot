@@ -3,17 +3,8 @@ import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../lib/store'
 import * as Actions from '../lib/actions';
+import { Layer } from '../lib/constants';
 import Seed from '../lib/Seed';
-
-// import TrianglePrism from '../components/primary/TrianglePrism'
-// import LinesGrad from '../components/horizon/LinesGrad'
-// import CircleMono from '../components/primary/CircleMono'
-import TriangleOutline from '../components/secondary/TriangleOutline'
-import TriangleMono from '../components/primary/TriangleMono'
-import TriangleSolid from '../components/secondary/TriangleSolid'
-import BGLinesGrad from '../components/bg/LinesGrad'
-import BarGraph from '../components/horizon/BarGraph'
-import Grid from '../components/floor/Grid'
 
 const Styles = () => (
   <style jsx>{`
@@ -66,43 +57,34 @@ class NeonRiot extends React.Component {
 
     // @TODO actually implement input
     // const input = Math.floor(Math.random()*1000000).toString();
-    const input = "abcd w"; // "abc";
+    const input = "abcd wa";
 
     const seed = Seed( input );
     // map the seed value to screen y value
     seed.horizonY = ( seed.horizonY / 100 ) * windowSize.height;
 
+    const setPropsFor = className => ({
+      windowSize,
+      className,
+      seed
+    })
+
+    const BG = seed.bg;
+    const Floor = seed.floor;
+    const Horizon = seed.horizon;
+    const Tertiary = seed.tertiary.shape;
+    const Secondary = seed.secondary.shape;
+    const Primary = seed.primary.shape;
+
     return (
       <svg id="container">
-        {/*
-          <TrianglePrism width="500" height="500" color="#DC00FF" />
-          <CircleMono width="500" height="500" color="#DC00FF" seed={seed} />
-        */}
 
-        <BGLinesGrad
-          windowSize={windowSize}
-          className="layer-bg"
-          seed={seed} />
-        <Grid
-          windowSize={windowSize}
-          className="layer-floor"
-          seed={seed} />
-        <BarGraph
-          windowSize={windowSize}
-          className="layer-horizon"
-          seed={seed} />
-        <TriangleOutline
-          windowSize={windowSize}
-          className="layer-tertiary"
-          seed={seed} />
-        <TriangleSolid
-          windowSize={windowSize}
-          className="layer-secondary"
-          seed={seed} />
-        <TriangleMono
-          windowSize={windowSize}
-          className="layer-primary"
-          seed={seed} />
+        <BG { ...setPropsFor('layer-bg') } />
+        <Floor { ...setPropsFor('layer-floor') } />
+        <Horizon { ...setPropsFor('layer-horizon') } />
+        <Tertiary { ...setPropsFor('layer-tertiary') } layer={ Layer.TERTIARY } />
+        <Secondary { ...setPropsFor('layer-secondary') } layer={ Layer.SECONDARY } />
+        <Primary { ...setPropsFor('layer-primary') } />
 
         <Styles />
       </svg>
