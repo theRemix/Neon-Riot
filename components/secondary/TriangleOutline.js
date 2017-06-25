@@ -1,6 +1,6 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-export default ({ horizonPosition, color, seed }) => {
 
+export default ({ windowSize, horizonPosition, color, seed }) => {
   // @TODO actually implement seed
   const strokeWidthVals = [1,2,3,4,5,6,7]
   const strokeWidth = strokeWidthVals[seed % strokeWidthVals.length]
@@ -24,9 +24,9 @@ export default ({ horizonPosition, color, seed }) => {
   const sizes = Array(numSizeVals).fill(null)
     .map((_,i) => ( ( maxSize - minSize ) / numSizeVals * i ) + minSize )
 
-  const size = sizes[seed % numSizeVals];
-
   const offsetForGlow = 5;
+
+  const size = sizes[seed % numSizeVals] + offsetForGlow;
 
   const {
     GlowFilter,
@@ -35,9 +35,10 @@ export default ({ horizonPosition, color, seed }) => {
 
   return (
     <svg
-      width={size+offsetForGlow}
-      height={size+offsetForGlow}
+      width={size}
+      height={size}
       y={y}
+      x={(windowSize.width / 2) - (size / 2)}
       viewBox="0 0 203.17 175.95">
       <defs>
         <GlowFilterDef color={color} />

@@ -84,6 +84,7 @@ class NeonRiot extends React.Component {
           color="#DC00FF"
           seed={seed} />
         <TriangleOutline
+          windowSize={windowSize}
           className="layer-secondary"
           horizonPosition={horizonPosition}
           color="#FA00CA"
