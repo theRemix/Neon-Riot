@@ -10,7 +10,7 @@ export default ({ horizonPosition, color, seed }) => {
     fill: "rgba(0,0,0,0.75)"
   }
 
-  const minHeight = 100
+  const minHeight = 200
   const numHeightVals = 1000
   const heights = Array(numHeightVals).fill(null)
     .map((_,i) => ( ( horizonPosition - minHeight ) / numHeightVals * i ) + minHeight)
