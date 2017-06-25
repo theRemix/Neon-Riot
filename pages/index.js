@@ -6,6 +6,7 @@ import { initStore } from '../lib/store'
 import * as Actions from '../lib/actions';
 import { Layer } from '../lib/constants';
 import Seed from '../lib/Seed';
+import Loading from '../components/Loading';
 
 const Styles = () => (
   <style jsx>{`
@@ -73,6 +74,12 @@ const Styles = () => (
       letter-spacing: 1px;
       border: 1px solid #666;
     }
+    .center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   `}</style>
 )
 
@@ -118,36 +125,47 @@ class NeonRiot extends React.Component {
     const Secondary = seed.secondary.shape;
     const Primary = seed.primary.shape;
 
+    let content = <Loading className="center" />;
+    if (windowSize.width !== 0) {
+      content = (
+        <div>
+          <svg id="container" mask="url(#radialMask)">
+            <defs>
+              <filter id="radialMaskFilter">
+                <feGaussianBlur stdDeviation="100"/>
+              </filter>
+              <mask id="radialMask">
+                <ellipse cx="50%" cy="40%" rx="125%" ry="50%" fill="white" filter="url(#radialMaskFilter)" />
+              </mask>
+            </defs>
+
+            <BG { ...setPropsFor('layer-bg') } />
+            <Floor { ...setPropsFor('layer-floor') } />
+            <Horizon { ...setPropsFor('layer-horizon') } />
+            <Tertiary { ...setPropsFor('layer-tertiary') } layer={ Layer.TERTIARY } />
+            <Secondary { ...setPropsFor('layer-secondary') } layer={ Layer.SECONDARY } />
+            <Primary { ...setPropsFor('layer-primary') } />
+          </svg>
+
+          <div className="inputContainer">
+            <label className="inputLabel">
+              <p>Enter Some Text</p>
+              <input type="text" onChange={this.handleChange} value={input} />
+            </label>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         <Head>
           <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600" rel="stylesheet" />
         </Head>
-        <svg id="container" mask="url(#radialMask)">
-          <defs>
-            <filter id="radialMaskFilter">
-              <feGaussianBlur stdDeviation="100"/>
-            </filter>
-            <mask id="radialMask">
-              <ellipse cx="50%" cy="40%" rx="125%" ry="50%" fill="white" filter="url(#radialMaskFilter)" />
-            </mask>
-          </defs>
 
-          <BG { ...setPropsFor('layer-bg') } />
-          <Floor { ...setPropsFor('layer-floor') } />
-          <Horizon { ...setPropsFor('layer-horizon') } />
-          <Tertiary { ...setPropsFor('layer-tertiary') } layer={ Layer.TERTIARY } />
-          <Secondary { ...setPropsFor('layer-secondary') } layer={ Layer.SECONDARY } />
-          <Primary { ...setPropsFor('layer-primary') } />
+        {content}
 
-          <Styles />
-        </svg>
-        <div className="inputContainer">
-          <label className="inputLabel">
-            <p>Enter Some Text</p>
-            <input type="text" onChange={this.handleChange} value={input} />
-          </label>
-        </div>
+        <Styles />
       </div>
     )
   }
