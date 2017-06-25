@@ -5,6 +5,7 @@ import withRedux from 'next-redux-wrapper'
 // import TrianglePrism from '../components/primary/TrianglePrism'
 import CircleMono from '../components/primary/CircleMono'
 import LinesGrad from '../components/horizon/LinesGrad'
+import Grid from '../components/floor/Grid'
 
 const Styles = () => (
   <style jsx>{`
@@ -57,10 +58,15 @@ class NeonRiot extends React.Component {
 
   render () {
     // @TODO actually implement seed
-    const seed = Math.floor(Math.random()*100);
+    const seed = Math.floor(Math.random()*1000000);
 
-    // @TODO real seeded horizonPosition
-    const horizonPosition = 500;
+    const minHorizonPosition = window.innerHeight / 4;
+    const maxHorizonPosition = minHorizonPosition * 3;
+    const numHorizonVals = 1000;
+    const horizonVals = Array(numHorizonVals).fill(null)
+      .map((_,i) => ( maxHorizonPosition - minHorizonPosition / numHorizonVals * i ));
+
+    const horizonPosition = horizonVals[seed % numHorizonVals];
 
     return (
       <svg id="container">
@@ -69,6 +75,11 @@ class NeonRiot extends React.Component {
           <CircleMono width="500" height="500" color="#DC00FF" seed={seed} />
         */}
 
+        <Grid
+          className="layer-floor"
+          horizonPosition={horizonPosition}
+          color="#2222FF"
+          seed={seed} />
         <LinesGrad
           className="layer-horizon"
           horizonPosition={horizonPosition}
