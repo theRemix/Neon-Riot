@@ -51,6 +51,7 @@ class NeonRiot extends React.Component {
   }
 
   render () {
+    const { windowWidth } = this.props;
     // @TODO actually implement seed
     const seed = Math.floor(Math.random()*100);
 
@@ -70,6 +71,7 @@ class NeonRiot extends React.Component {
           color="#DC00FF"
           seed={seed} />
         <CircleMono
+          windowWidth={windowWidth}
           className="layer-primary"
           horizonPosition={horizonPosition}
           color="#FFCC00"
