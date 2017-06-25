@@ -74,11 +74,20 @@ class NeonRiot extends React.Component {
     const horizonPosition = ( seed.horizonY / 100 ) * windowSize.height;
 
     return (
-      <svg id="container">
+      <svg id="container" mask="url(#radialMask)">
         {/*
           <TrianglePrism width="500" height="500" color="#DC00FF" />
           <CircleMono width="500" height="500" color="#DC00FF" seed={seed} />
         */}
+
+        <defs>
+          <filter id="radialMaskFilter">
+            <feGaussianBlur stdDeviation="100"/>
+          </filter>
+          <mask id="radialMask">
+            <ellipse cx="50%" cy="40%" rx="125%" ry="50%" fill="white" filter="url(#radialMaskFilter)" />
+          </mask>
+        </defs>
 
         <BGLinesGrad
           windowSize={windowSize}
