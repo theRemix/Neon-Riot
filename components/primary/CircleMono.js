@@ -38,7 +38,7 @@ export default ({ windowWidth = 0, horizonPosition, color, seed }) => {
   return (
     <svg
       width={size}
-      height={size+offsetForGlow}
+      height={size}
       y={y}
       x={(windowWidth / 2) - (size / 2)}
       viewBox="0 0 265.85 257.71"
