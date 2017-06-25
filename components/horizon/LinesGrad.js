@@ -1,15 +1,5 @@
 import GlowFilterProvider from "../effects/GlowFilter";
 
-const COLORS = [
-  "#CD00CB",
-  "#FF49F3",
-  "#4FD4F7",
-  "#FF49F3",
-  "#1566FE",
-  "#FF49F3",
-  "#FF00D0"
-];
-
 export default ({ windowSize, seed }) => {
   /*
    * Should know horizon position
@@ -17,7 +7,8 @@ export default ({ windowSize, seed }) => {
    */
 
   const horizonPosition = seed.horizonY;
-  const color = seed.select( seed.slices[1], COLORS );
+  const color = seed.horizon.color;
+  const glowColor = seed.horizon.glowColor;
 
   const lineProps = {
     stroke: color,
@@ -39,7 +30,7 @@ export default ({ windowSize, seed }) => {
   return (
     <svg width="100%" height={height} y={horizonPosition-height} viewBox="0 0 1360.72 249.97" preserveAspectRatio="none">
       <defs>
-        <GlowFilterDef color={color} />
+        <GlowFilterDef color={glowColor} />
       </defs>
       <g transform="translate(5,5)" filter={GlowFilter}>
         <line { ...lineProps } strokeWidth="2.95px" y1="1.47" x2="1360.72" y2="1.47"/>

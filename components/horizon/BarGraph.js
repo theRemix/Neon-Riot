@@ -1,15 +1,5 @@
 import GlowFilterProvider from "../effects/GlowFilter";
 
-const COLORS = [
-  "#CD00CB",
-  "#FF49F3",
-  "#4FD4F7",
-  "#FF49F3",
-  "#1566FE",
-  "#FF49F3",
-  "#FF00D0"
-];
-
 export default ({ seed }) => {
   /*
    * Should know horizon position
@@ -17,7 +7,8 @@ export default ({ seed }) => {
    */
 
   const horizonPosition = seed.horizonY;
-  const color = seed.select( seed.slices[1], COLORS );
+  const color = seed.horizon.color;
+  const glowColor = seed.horizon.glowColor;
 
   const minHeight = 200
   const numHeightVals = 1000
@@ -34,7 +25,7 @@ export default ({ seed }) => {
   return (
     <svg width="100%" height={height} y={horizonPosition-height} viewBox="0 0 888.23 156" preserveAspectRatio="none">
       <defs>
-        <GlowFilterDef color={color} strength="0.4" />
+        <GlowFilterDef color={glowColor} strength="0.4" />
       </defs>
       <g fill={color} filter={GlowFilter}>
         <rect y="116.04" width="5.44" height="39.96"/>

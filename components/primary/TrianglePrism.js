@@ -1,30 +1,9 @@
 import GlowFilterProvider from "../effects/GlowFilter"
 
-const COLORS = [
-  "#CD00CB",
-  "#FF49F3",
-  "#4FD4F7",
-  "#FF49F3",
-  "#1566FE",
-  "#FF49F3",
-  "#FF00D0"
-];
-
-const GLOW_COLORS = [
-  "#000",
-  "#FF49F3",
-  "#4FD4F7",
-  "#323232",
-  "#1566FE",
-  "#FF49F3",
-  "#99939F",
-  "#121212"
-];
-
 export default ({ windowSize, seed }) => {
 
-  const color = seed.select( seed.slices[3], COLORS );
-  const glowColor = seed.select( seed.slices[4], GLOW_COLORS );
+  const color = seed.primary.color;
+  const glowColor = seed.primary.glowColor;
 
   // @TODO to come from constants
   const size = {
