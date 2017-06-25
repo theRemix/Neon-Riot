@@ -46,11 +46,14 @@ export default ({ windowSize, seed, layer }) => {
       x={( windowSize.width / 2 ) - ( size.width / 2 )}
       y={( windowSize.height / 2 ) - ( size.height / 2 ) + offsetFromPrimary}
       transform={`rotate(180,${( windowSize.width / 2 )},${( windowSize.height / 2 )})` }
-      viewBox="0 0 209.19 192.5">
+      viewBox="0 0 223.17 195.95"
+      preserveAspectRatio="none">
       <defs>
         <GlowFilterDef color={glowColor} />
       </defs>
-      <polygon { ...polyProps } transform="translate(0,0)" filter={GlowFilter} points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
+      <g transform={`translate(${offsetForGlow},${offsetForGlow})`} filter={GlowFilter}>
+        <polygon { ...polyProps } points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
+      </g>
     </svg>
   )
 }
