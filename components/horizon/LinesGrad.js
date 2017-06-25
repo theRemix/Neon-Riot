@@ -1,9 +1,23 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-export default ({ horizonPosition, color, seed }) => {
+
+const COLORS = [
+  "#CD00CB",
+  "#FF49F3",
+  "#4FD4F7",
+  "#FF49F3",
+  "#1566FE",
+  "#FF49F3",
+  "#FF00D0"
+];
+
+export default ({ windowSize, seed }) => {
   /*
    * Should know horizon position
    *   - fills from horizon, up to random height
    */
+
+  const horizonPosition = seed.horizonY;
+  const color = seed.select( seed.slices[1], COLORS );
 
   const lineProps = {
     stroke: color,
@@ -15,7 +29,7 @@ export default ({ horizonPosition, color, seed }) => {
   const heights = Array(numHeightVals).fill(null)
     .map((_,i) => ( ( horizonPosition - minHeight ) / numHeightVals * i ) + minHeight)
 
-  const height = heights[seed % numHeightVals]
+  const height = seed.select(seed.slices[2], heights);
 
   const {
     GlowFilter,

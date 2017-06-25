@@ -1,9 +1,20 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-export default ({ horizonPosition, color, seed }) => {
+
+const BG_COLORS = [
+  "#121212",
+  "#111111",
+  "#212121",
+  "#131213",
+  "#121313"
+];
+
+export default ({ windowSize, seed }) => {
   /*
    * Should know horizon position
    *   - fills from horizon, up to random height
    */
+
+  const color = seed.select( seed.slices[0], BG_COLORS );
 
   const lineProps = {
     stroke: color,

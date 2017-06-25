@@ -1,9 +1,23 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-export default ({ windowSize, horizonPosition, color, seed }) => {
+
+const COLORS = [
+  "#CD00CB",
+  "#FF49F3",
+  "#4FD4F7",
+  "#FF49F3",
+  "#1566FE",
+  "#FF49F3",
+  "#FF00D0"
+];
+
+export default ({ windowSize, seed }) => {
   /*
    * Should know horizon position
    *   - fills from horizon, up to very bottom of screen
    */
+
+  const horizonPosition = seed.horizonY;
+  const color = seed.select( seed.slices[0], COLORS );
 
   const lineProps = {
     stroke: color,
