@@ -1,6 +1,36 @@
 import GlowFilterProvider from "../effects/GlowFilter"
 
-export default ({ width, height, color }) => {
+const COLORS = [
+  "#CD00CB",
+  "#FF49F3",
+  "#4FD4F7",
+  "#FF49F3",
+  "#1566FE",
+  "#FF49F3",
+  "#FF00D0"
+];
+
+const GLOW_COLORS = [
+  "#000",
+  "#FF49F3",
+  "#4FD4F7",
+  "#323232",
+  "#1566FE",
+  "#FF49F3",
+  "#99939F",
+  "#121212"
+];
+
+export default ({ windowSize, seed }) => {
+
+  const color = seed.select( seed.slices[3], COLORS );
+  const glowColor = seed.select( seed.slices[4], GLOW_COLORS );
+
+  // @TODO to come from constants
+  const size = {
+    width : 400,
+    height : 400,
+  };
 
   const {
     GlowFilter,
@@ -8,9 +38,12 @@ export default ({ width, height, color }) => {
   } = GlowFilterProvider()
 
   return (
-    <svg width={width} height={height} >
+    <svg
+      { ...size }
+      x={( windowSize.width / 2 ) - ( size.width / 2 )}
+      y={( windowSize.height / 2 ) - ( size.height / 2 )}>
       <defs>
-        <GlowFilterDef color={color} />
+        <GlowFilterDef color={glowColor} />
       </defs>
 
       <g transform="translate(10,10)">

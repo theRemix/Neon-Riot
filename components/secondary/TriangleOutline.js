@@ -1,8 +1,21 @@
 import GlowFilterProvider from "../effects/GlowFilter";
 
-export default ({ windowSize, horizonPosition, color, seed }) => {
+const COLORS = [
+  "#CD00CB",
+  "#FF49F3",
+  "#4FD4F7",
+  "#FF49F3",
+  "#1566FE",
+  "#FF49F3",
+  "#FF00D0"
+];
+
+export default ({ windowSize, seed }) => {
   // @TODO actually implement seed
   const strokeWidth = 1.2;
+
+  const color = seed.select( seed.slices[2], COLORS );
+  const glowColor = seed.select( seed.slices[3], COLORS );
 
   const polyProps = {
     stroke: color,
@@ -36,7 +49,7 @@ export default ({ windowSize, horizonPosition, color, seed }) => {
       viewBox="0 0 223.17 195.95"
       preserveAspectRatio="none">
       <defs>
-        <GlowFilterDef color={color} />
+        <GlowFilterDef color={glowColor} />
       </defs>
       <g transform={ `translate(${offsetForGlow},${offsetForGlow})` } filter={GlowFilter}>
         <polygon { ...polyProps } points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>

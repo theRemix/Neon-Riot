@@ -1,9 +1,33 @@
 import GlowFilterProvider from "../effects/GlowFilter";
 
-export default ({ windowSize, horizonPosition, color, seed }) => {
-  // @TODO actually implement seed
-  const strokeWidthVals = [1,2,3,4,5,6,7]
-  const strokeWidth = strokeWidthVals[seed % strokeWidthVals.length]
+const COLORS = [
+  "#CD00CB",
+  "#FF49F3",
+  "#4FD4F7",
+  "#FF49F3",
+  "#1566FE",
+  "#FF49F3",
+  "#FF00D0"
+];
+
+const GLOW_COLORS = [
+  "#000",
+  "#FF49F3",
+  "#4FD4F7",
+  "#323232",
+  "#1566FE",
+  "#FF49F3",
+  "#99939F",
+  "#121212"
+];
+
+const STROKE_WIDTHS = [1,2,3,4,5,6,7];
+
+export default ({ windowSize, seed }) => {
+
+  const color = seed.select( seed.slices[4], COLORS );
+  const glowColor = seed.select( seed.slices[5], GLOW_COLORS );
+  const strokeWidth = seed.select(seed.slices[0], STROKE_WIDTHS);
 
   const lineProps = {
     stroke: color,
@@ -17,34 +41,25 @@ export default ({ windowSize, horizonPosition, color, seed }) => {
   const circumferences = Array(numCircumferenceVals).fill(null)
     .map((_,i) => ( ( maxCircumference - minCircumference ) / numCircumferenceVals * i ) + minCircumference )
 
-  const circumference = circumferences[seed % numCircumferenceVals];
-
-  const minY = 200
-  const numYVals = 1000
-  const yVals = Array(numYVals).fill(null)
-    .map((_,i) => ( ( horizonPosition - minY ) / numYVals * i) + minY )
-
-  const y = yVals[seed % numYVals]
+  const circumference = seed.select(seed.slices[3], circumferences);
 
   const offsetForGlow = 5
+
+  const size = circumference+offsetForGlow;
 
   const {
     GlowFilter,
     GlowFilterDef
   } = GlowFilterProvider()
 
-  const size = circumference+offsetForGlow;
-
   return (
     <svg
-      width={size}
-      height={size}
-      y={y}
-      x={(windowSize.width / 2) - (size / 2)}
+      x={( windowSize.width / 2 ) - ( size / 2 )}
+      y={( windowSize.height / 2 ) - ( size / 2 )}
       viewBox="0 0 265.85 265.85"
       preserveAspectRatio="none">
       <defs>
-        <GlowFilterDef color={color} />
+        <GlowFilterDef color={glowColor} />
       </defs>
       <g transform={ `translate(${offsetForGlow},${offsetForGlow})` } filter={GlowFilter}>
         <line { ...lineProps } x1="96.6" y1="3" x2="159.25" y2="3" />

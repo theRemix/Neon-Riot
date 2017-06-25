@@ -64,14 +64,13 @@ class NeonRiot extends React.Component {
   render () {
     const { windowSize } = this.props;
 
-    // @TMP until seed is fully implemented
-    const oldSeed = Math.floor(Math.random()*1000000);
-
     // @TODO actually implement input
-    const input = oldSeed.toString();
+    // const input = Math.floor(Math.random()*1000000).toString();
+    const input = "abcd w"; // "abc";
 
     const seed = Seed( input );
-    const horizonPosition = ( seed.horizonY / 100 ) * windowSize.height;
+    // map the seed value to screen y value
+    seed.horizonY = ( seed.horizonY / 100 ) * windowSize.height;
 
     return (
       <svg id="container">
@@ -83,40 +82,27 @@ class NeonRiot extends React.Component {
         <BGLinesGrad
           windowSize={windowSize}
           className="layer-bg"
-          color="#121212"
-          seed={oldSeed} />
+          seed={seed} />
         <Grid
           windowSize={windowSize}
           className="layer-floor"
-          horizonPosition={horizonPosition}
-          color="#CD00CB"
-          seed={oldSeed} />
+          seed={seed} />
         <BarGraph
           windowSize={windowSize}
           className="layer-horizon"
-          horizonPosition={horizonPosition}
-          color="#FF49F3"
-          seed={oldSeed} />
+          seed={seed} />
         <TriangleOutline
           windowSize={windowSize}
           className="layer-tertiary"
-          horizonPosition={horizonPosition}
-          color="#4FD4F7"
-          glowColor="#FF49F3"
-          seed={oldSeed} />
+          seed={seed} />
         <TriangleSolid
           windowSize={windowSize}
           className="layer-secondary"
-          horizonPosition={horizonPosition}
-          color="#1566FE"
-          glowColor="#FF49F3"
-          seed={oldSeed} />
+          seed={seed} />
         <TriangleMono
           windowSize={windowSize}
           className="layer-primary"
-          horizonPosition={horizonPosition}
-          color="#FF00D0"
-          seed={oldSeed} />
+          seed={seed} />
 
         <Styles />
       </svg>
