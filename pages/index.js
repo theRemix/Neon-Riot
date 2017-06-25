@@ -4,6 +4,7 @@ import { initStore, startClock, addCount, serverRenderClock } from '../lib/store
 import withRedux from 'next-redux-wrapper'
 // import TrianglePrism from '../components/primary/TrianglePrism'
 import CircleMono from '../components/primary/CircleMono'
+import TriangleOutline from '../components/secondary/TriangleOutline'
 import LinesGrad from '../components/horizon/LinesGrad'
 import Grid from '../components/floor/Grid'
 
@@ -84,6 +85,11 @@ class NeonRiot extends React.Component {
           className="layer-horizon"
           horizonPosition={horizonPosition}
           color="#DC00FF"
+          seed={seed} />
+        <TriangleOutline
+          className="layer-secondary"
+          horizonPosition={horizonPosition}
+          color="#FA00CA"
           seed={seed} />
         <CircleMono
           className="layer-primary"
