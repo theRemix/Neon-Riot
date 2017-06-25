@@ -19,6 +19,7 @@ const Styles = () => (
   <style jsx>{`
     body {
       background-color: #000;
+      background-image: url(http://api.thumbr.it/whitenoise-100x100.png?background=00000000&noise=555555&density=14&opacity=40);
     }
     #container {
       position: absolute;
