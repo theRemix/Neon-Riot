@@ -1,6 +1,7 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
+import Head from 'next/head'
 import { initStore } from '../lib/store'
 import * as Actions from '../lib/actions';
 import { Layer } from '../lib/constants';
@@ -11,6 +12,7 @@ const Styles = () => (
     body {
       background-color: #000;
       background-image: url(http://api.thumbr.it/whitenoise-100x100.png?background=00000000&noise=555555&density=14&opacity=40);
+      font-family: 'Montserrat', sans-serif;
     }
     #container {
       position: absolute;
@@ -92,6 +94,9 @@ class NeonRiot extends React.Component {
 
     return (
       <div>
+        <Head>
+          <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600" rel="stylesheet" />
+        </Head>
         <svg id="container" mask="url(#radialMask)">
           <defs>
             <filter id="radialMaskFilter">
