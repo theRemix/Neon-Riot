@@ -41,7 +41,7 @@ export default ({ windowSize, horizonPosition, color, seed }) => {
       height={size}
       y={y}
       x={(windowSize.width / 2) - (size / 2)}
-      viewBox="0 0 265.85 257.71"
+      viewBox="0 0 265.85 265.85"
       preserveAspectRatio="none">
       <defs>
         <GlowFilterDef color={color} />

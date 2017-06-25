@@ -24,7 +24,7 @@ export default ({ windowSize, horizonPosition, color, seed }) => {
   const sizes = Array(numSizeVals).fill(null)
     .map((_,i) => ( ( maxSize - minSize ) / numSizeVals * i ) + minSize )
 
-  const offsetForGlow = 5;
+  const offsetForGlow = 10;
 
   const size = sizes[seed % numSizeVals] + offsetForGlow;
 
@@ -39,11 +39,14 @@ export default ({ windowSize, horizonPosition, color, seed }) => {
       height={size}
       y={y}
       x={(windowSize.width / 2) - (size / 2)}
-      viewBox="0 0 203.17 175.95">
+      viewBox="0 0 223.17 195.95"
+      preserveAspectRatio="none">
       <defs>
         <GlowFilterDef color={color} />
       </defs>
-      <polygon { ...polyProps } filter={GlowFilter} points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
+      <g transform={ `translate(${offsetForGlow},${offsetForGlow})` } filter={GlowFilter}>
+        <polygon { ...polyProps } points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
+      </g>
     </svg>
   )
 }
