@@ -1,5 +1,5 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-export default ({ horizonPosition, color, seed }) => {
+export default ({ windowSize, horizonPosition, color, seed }) => {
   /*
    * Should know horizon position
    *   - fills from horizon, up to very bottom of screen
@@ -11,8 +11,8 @@ export default ({ horizonPosition, color, seed }) => {
     fill: "rgba(0,0,0,0.75)"
   }
 
-  const height = window.innerHeight - horizonPosition;
-  const width = window.innerWidth * 3;
+  const height = windowSize.height - horizonPosition;
+  const width = windowSize.width * 3;
   const x = -width / 3;
 
   const {

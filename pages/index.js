@@ -45,7 +45,7 @@ const Styles = () => (
 class NeonRiot extends React.Component {
   componentDidMount () {
     const { actions } = this.props;
-    actions.getWindowWidth();
+    actions.getWindowSize();
   }
 
   componentWillUnmount () {
@@ -53,11 +53,11 @@ class NeonRiot extends React.Component {
   }
 
   render () {
-    const { windowWidth } = this.props;
+    const { windowSize } = this.props;
     // @TODO actually implement seed
     const seed = Math.floor(Math.random()*1000000);
 
-    const minHorizonPosition = window.innerHeight / 4;
+    const minHorizonPosition = windowSize.height / 4;
     const maxHorizonPosition = minHorizonPosition * 3;
     const numHorizonVals = 1000;
     const horizonVals = Array(numHorizonVals).fill(null)
@@ -73,6 +73,7 @@ class NeonRiot extends React.Component {
         */}
 
         <Grid
+          windowSize={windowSize}
           className="layer-floor"
           horizonPosition={horizonPosition}
           color="#2222FF"
@@ -88,7 +89,7 @@ class NeonRiot extends React.Component {
           color="#FA00CA"
           seed={seed} />
         <CircleMono
-          windowWidth={windowWidth}
+          windowSize={windowSize}
           className="layer-primary"
           horizonPosition={horizonPosition}
           color="#FFCC00"
