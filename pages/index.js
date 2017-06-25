@@ -54,11 +54,7 @@ class NeonRiot extends React.Component {
   }
 
   render () {
-    const { windowSize } = this.props;
-
-    // @TODO actually implement input
-    // const input = Math.floor(Math.random()*1000000).toString();
-    const input = "abcd wa";
+    const { windowSize, input } = this.props;
 
     const seed = Seed( input );
     // map the seed value to screen y value
