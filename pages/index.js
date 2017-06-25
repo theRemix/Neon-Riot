@@ -64,6 +64,7 @@ class NeonRiot extends React.Component {
     const input = oldSeed.toString();
 
     const seed = Seed( input );
+    const horizonPosition = ( seed.horizonY / 100 ) * windowSize.height;
 
     return (
       <svg id="container">
@@ -75,23 +76,23 @@ class NeonRiot extends React.Component {
         <Grid
           windowSize={windowSize}
           className="layer-floor"
-          horizonPosition={seed.horizonY}
+          horizonPosition={horizonPosition}
           color="#2222FF"
           seed={oldSeed} />
         <LinesGrad
           className="layer-horizon"
-          horizonPosition={seed.horizonY}
+          horizonPosition={horizonPosition}
           color="#DC00FF"
           seed={oldSeed} />
         <TriangleOutline
           className="layer-secondary"
-          horizonPosition={seed.horizonY}
+          horizonPosition={horizonPosition}
           color="#FA00CA"
           seed={oldSeed} />
         <CircleMono
           windowSize={windowSize}
           className="layer-primary"
-          horizonPosition={seed.horizonY}
+          horizonPosition={horizonPosition}
           color="#FFCC00"
           seed={oldSeed} />
 
