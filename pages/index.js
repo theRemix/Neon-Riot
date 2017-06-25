@@ -8,80 +8,79 @@ import { Layer } from '../lib/constants';
 import Seed from '../lib/Seed';
 import Loading from '../components/Loading';
 
-const Styles = () => (
-  <style jsx>{`
-    body {
-      background-color: #000;
-      background-image: url(http://api.thumbr.it/whitenoise-100x100.png?background=00000000&noise=555555&density=14&opacity=40);
-      font-family: 'Montserrat', sans-serif;
-    }
-    #container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-    svg {
-      position: absolute;
-    }
-    .layer-bg{
-      z-index: 6;
-    }
-    .layer-horizon{
-      z-index: 5;
-    }
-    .layer-floor{
-      z-index: 4;
-    }
-    .layer-tertiary{
-      z-index: 3;
-    }
-    .layer-secondary{
-      z-index: 2;
-    }
-    .layer-primary{
-      z-index: 1;
-    }
-    .inputContainer {
-      background: #000;
-      color: #666;
-      border: 1px solid #333;
-      border-right: 0;
-      position: absolute;
-      top: 0;
-      right: 0;
-    }
-    .inputLabel {
-      display: block;
-      margin: 30px 35px;
-    }
-    .inputLabel p {
-      font-weight: 500;
-      font-size: 12px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .inputLabel input {
-      padding: 8px 12px;
-      background: #000;
-      color: #FF00FF;
-      text-shadow: 0 0 10px #FF00FF;
-      font-family: 'Montserrat', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      outline: 0;
-      letter-spacing: 1px;
-      border: 1px solid #666;
-    }
-    .center {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-  `}</style>
-)
+const Styles = `
+  body {
+    background-color: #000;
+    background-image: url(http://api.thumbr.it/whitenoise-100x100.png?background=00000000&noise=555555&density=14&opacity=40);
+    font-family: 'Montserrat', sans-serif;
+  }
+  #container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  svg {
+    position: absolute;
+  }
+  .layer-bg{
+    z-index: 6;
+  }
+  .layer-horizon{
+    z-index: 5;
+  }
+  .layer-floor{
+    z-index: 4;
+  }
+  .layer-tertiary{
+    z-index: 3;
+  }
+  .layer-secondary{
+    z-index: 2;
+  }
+  .layer-primary{
+    z-index: 1;
+  }
+  .inputContainer {
+    background: #000;
+    color: #666;
+    border: 1px solid #333;
+    border-right: 0;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  .inputLabel {
+    display: block;
+    margin: 30px 35px;
+  }
+  .inputLabel p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .inputLabel input {
+    padding: 8px 12px;
+    background: #000;
+    color: #FF00FF;
+    text-shadow: 0 0 10px #FF00FF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    outline: 0;
+    letter-spacing: 1px;
+    border: 1px solid #666;
+  }
+  .center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+`;
 
 class NeonRiot extends React.Component {
   constructor(props) {
@@ -161,11 +160,10 @@ class NeonRiot extends React.Component {
       <div>
         <Head>
           <link href="https://fonts.googleapis.com/css?family=Montserrat:500,600" rel="stylesheet" />
+          <style>{Styles}</style>
         </Head>
 
         {content}
-
-        <Styles />
       </div>
     )
   }
