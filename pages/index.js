@@ -40,6 +40,11 @@ const Styles = () => (
     .layer-primary{
       z-index: 1;
     }
+    .inputContainer {
+      position: absolute;
+      top: 0;
+      right: 0;
+    }
   `}</style>
 )
 
@@ -106,7 +111,9 @@ class NeonRiot extends React.Component {
 
           <Styles />
         </svg>
+        <div className="inputContainer">
           <input type="text" onChange={this.handleChange} value={input} />
+        </div>
       </div>
     )
   }
