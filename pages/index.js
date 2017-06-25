@@ -58,7 +58,7 @@ class NeonRiot extends React.Component {
 
     // @TODO actually implement input
     // const input = Math.floor(Math.random()*1000000).toString();
-    const input = "abcd wa";
+    const input = "73";
 
     const seed = Seed( input );
     // map the seed value to screen y value
