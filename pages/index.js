@@ -44,6 +44,11 @@ const Styles = () => (
 )
 
 class NeonRiot extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
   componentDidMount () {
     const { actions } = this.props;
     actions.getWindowSize();
@@ -51,6 +56,13 @@ class NeonRiot extends React.Component {
 
   componentWillUnmount () {
     clearInterval(this.timer)
+  }
+
+  handleChange(event) {
+    const { actions } = this.props;
+    const { value } = event.target;
+
+    actions.updateInput(value);
   }
 
   render () {
@@ -74,25 +86,28 @@ class NeonRiot extends React.Component {
     const Primary = seed.primary.shape;
 
     return (
-      <svg id="container" mask="url(#radialMask)">
-        <defs>
-          <filter id="radialMaskFilter">
-            <feGaussianBlur stdDeviation="100"/>
-          </filter>
-          <mask id="radialMask">
-            <ellipse cx="50%" cy="40%" rx="125%" ry="50%" fill="white" filter="url(#radialMaskFilter)" />
-          </mask>
-        </defs>
+      <div>
+        <svg id="container" mask="url(#radialMask)">
+          <defs>
+            <filter id="radialMaskFilter">
+              <feGaussianBlur stdDeviation="100"/>
+            </filter>
+            <mask id="radialMask">
+              <ellipse cx="50%" cy="40%" rx="125%" ry="50%" fill="white" filter="url(#radialMaskFilter)" />
+            </mask>
+          </defs>
 
-        <BG { ...setPropsFor('layer-bg') } />
-        <Floor { ...setPropsFor('layer-floor') } />
-        <Horizon { ...setPropsFor('layer-horizon') } />
-        <Tertiary { ...setPropsFor('layer-tertiary') } layer={ Layer.TERTIARY } />
-        <Secondary { ...setPropsFor('layer-secondary') } layer={ Layer.SECONDARY } />
-        <Primary { ...setPropsFor('layer-primary') } />
+          <BG { ...setPropsFor('layer-bg') } />
+          <Floor { ...setPropsFor('layer-floor') } />
+          <Horizon { ...setPropsFor('layer-horizon') } />
+          <Tertiary { ...setPropsFor('layer-tertiary') } layer={ Layer.TERTIARY } />
+          <Secondary { ...setPropsFor('layer-secondary') } layer={ Layer.SECONDARY } />
+          <Primary { ...setPropsFor('layer-primary') } />
 
-        <Styles />
-      </svg>
+          <Styles />
+        </svg>
+          <input type="text" onChange={this.handleChange} value={input} />
+      </div>
     )
   }
 }
