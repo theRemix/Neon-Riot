@@ -3,6 +3,8 @@ import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import { initStore } from '../lib/store'
 import * as Actions from '../lib/actions';
+import Seed from '../lib/Seed';
+
 // import TrianglePrism from '../components/primary/TrianglePrism'
 import CircleMono from '../components/primary/CircleMono'
 import TriangleOutline from '../components/secondary/TriangleOutline'
@@ -54,16 +56,15 @@ class NeonRiot extends React.Component {
 
   render () {
     const { windowSize } = this.props;
-    // @TODO actually implement seed
-    const seed = Math.floor(Math.random()*1000000);
 
-    const minHorizonPosition = windowSize.height / 4;
-    const maxHorizonPosition = minHorizonPosition * 3;
-    const numHorizonVals = 1000;
-    const horizonVals = Array(numHorizonVals).fill(null)
-      .map((_,i) => ( maxHorizonPosition - minHorizonPosition / numHorizonVals * i ));
+    // @TMP until seed is fully implemented
+    const oldSeed = Math.floor(Math.random()*1000000);
 
-    const horizonPosition = horizonVals[seed % numHorizonVals];
+    // @TODO actually implement input
+    const input = oldSeed.toString();
+
+    const seed = Seed( input );
+    const horizonPosition = ( seed.horizonY / 100 ) * windowSize.height;
 
     return (
       <svg id="container">
@@ -77,23 +78,23 @@ class NeonRiot extends React.Component {
           className="layer-floor"
           horizonPosition={horizonPosition}
           color="#2222FF"
-          seed={seed} />
+          seed={oldSeed} />
         <LinesGrad
           className="layer-horizon"
           horizonPosition={horizonPosition}
           color="#DC00FF"
-          seed={seed} />
+          seed={oldSeed} />
         <TriangleOutline
           className="layer-secondary"
           horizonPosition={horizonPosition}
           color="#FA00CA"
-          seed={seed} />
+          seed={oldSeed} />
         <CircleMono
           windowSize={windowSize}
           className="layer-primary"
           horizonPosition={horizonPosition}
           color="#FFCC00"
-          seed={seed} />
+          seed={oldSeed} />
 
         <Styles />
       </svg>
