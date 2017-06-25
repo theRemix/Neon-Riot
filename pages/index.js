@@ -1,7 +1,8 @@
 import React from 'react'
 import { bindActionCreators } from 'redux'
-import { initStore, startClock, addCount, serverRenderClock } from '../lib/store'
 import withRedux from 'next-redux-wrapper'
+import { initStore } from '../lib/store'
+import * as Actions from '../lib/actions';
 // import TrianglePrism from '../components/primary/TrianglePrism'
 import CircleMono from '../components/primary/CircleMono'
 import TriangleOutline from '../components/secondary/TriangleOutline'
@@ -42,15 +43,9 @@ const Styles = () => (
 )
 
 class NeonRiot extends React.Component {
-  static getInitialProps ({ store, isServer }) {
-    store.dispatch(serverRenderClock(isServer))
-    store.dispatch(addCount())
-
-    return { isServer }
-  }
-
   componentDidMount () {
-    this.timer = this.props.startClock()
+    const { actions } = this.props;
+    actions.getWindowWidth();
   }
 
   componentWillUnmount () {
@@ -58,6 +53,7 @@ class NeonRiot extends React.Component {
   }
 
   render () {
+    const { windowWidth } = this.props;
     // @TODO actually implement seed
     const seed = Math.floor(Math.random()*1000000);
 
@@ -92,6 +88,7 @@ class NeonRiot extends React.Component {
           color="#FA00CA"
           seed={seed} />
         <CircleMono
+          windowWidth={windowWidth}
           className="layer-primary"
           horizonPosition={horizonPosition}
           color="#FFCC00"
@@ -103,11 +100,14 @@ class NeonRiot extends React.Component {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    addCount: bindActionCreators(addCount, dispatch),
-    startClock: bindActionCreators(startClock, dispatch)
-  }
+export function mapStateToProps(state) {
+  return state;
 }
 
-export default withRedux(initStore, null, mapDispatchToProps)(NeonRiot)
+export function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch),
+  };
+}
+
+export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(NeonRiot)
