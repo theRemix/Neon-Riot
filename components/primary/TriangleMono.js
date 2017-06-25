@@ -25,27 +25,35 @@ export default ({ windowSize, seed }) => {
     height : 400,
   };
   const linesSize = {
-    width : 370,
-    height : 370,
-    x : 15,
-    y : 20,
+    width : 330,
+    height : 330,
+    x : 25,
+    y : 35,
   };
 
   return (
     <svg
-      x={( windowSize.width / 2 ) - ( size.width / 2 )}
+      x={( windowSize.width / 2 ) - ( size.width / 2 ) + 15}
       y={( windowSize.height / 2 ) - ( size.height / 2 )}>
       <defs>
         <GlowFilterDef color={glowColor} />
       </defs>
 
-      <svg { ...size } viewBox="0 0 199.19 172.5" >
-        <g filter={GlowFilter} transform="translate(0,0)" >
+      <svg
+        { ...size }
+        viewBox="0 0 223 195"
+        preserveAspectRatio="none"
+      >
+        <g filter={GlowFilter} transform="translate(5,5)">
           <polygon { ...triangleProps } points="99.59 0 0 172.5 199.19 172.5 99.59 0"/>
         </g>
       </svg>
-      <svg { ...linesSize } viewBox="0 0 226.32 193" >
-        <g transform="translate(0,0)">
+      <svg
+        { ...linesSize }
+        viewBox="0 0 240 205"
+        preserveAspectRatio="none"
+      >
+        <g filter={GlowFilter} transform="translate(5,5)">
           <line { ...lineProps } x1="110.85" y1="0.5" x2="115.47" y2="0.5"/>
           <line { ...lineProps } x1="118.93" y1="6.5" x2="107.39" y2="6.5"/>
           <line { ...lineProps } x1="122.4" y1="12.5" x2="103.92" y2="12.5"/>
@@ -81,7 +89,6 @@ export default ({ windowSize, seed }) => {
           <line { ...lineProps } x1="226.32" y1="192.5" y2="192.5"/>
         </g>
       </svg>
-
     </svg>
   )
 }
