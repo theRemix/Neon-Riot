@@ -53,7 +53,7 @@ export default ({ windowSize, seed }) => {
         viewBox="0 0 240 205"
         preserveAspectRatio="none"
       >
-        <g filter={GlowFilter} transform="translate(5,5)">
+        <g transform="translate(5,5)">
           <line { ...lineProps } x1="110.85" y1="0.5" x2="115.47" y2="0.5"/>
           <line { ...lineProps } x1="118.93" y1="6.5" x2="107.39" y2="6.5"/>
           <line { ...lineProps } x1="122.4" y1="12.5" x2="103.92" y2="12.5"/>
