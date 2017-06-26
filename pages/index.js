@@ -111,6 +111,7 @@ class NeonRiot extends React.Component {
   componentDidMount () {
     const { actions } = this.props;
     actions.getWindowSize();
+    actions.updateInput("hiiiii");
   }
 
   componentWillUnmount () {
