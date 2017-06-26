@@ -50,6 +50,22 @@ const Styles = `
     position: absolute;
     top: 0;
     right: 0;
+    transition: transform 0.5s;
+  }
+  .toggle {
+    position: absolute;
+    top: -1px;
+    left: -7px;
+    width: 7px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 8px;
+    background: #000;
+    color: #333;
+    border: 1px solid #333;
+    cursor: pointer;
   }
   .inputLabel {
     display: block;
@@ -86,6 +102,10 @@ class NeonRiot extends React.Component {
   constructor(props) {
     super(props);
     this.handleChange = this.handleChange.bind(this);
+    this.toggleInput = this.toggleInput.bind(this);
+    this.state = {
+      showInput: true,
+    }
   }
 
   componentDidMount () {
@@ -104,8 +124,15 @@ class NeonRiot extends React.Component {
     actions.updateInput(value);
   }
 
+  toggleInput() {
+    this.setState((state) => ({
+      showInput: !state.showInput,
+    }))
+  }
+
   render () {
     const { windowSize, input } = this.props;
+    const { showInput } = this.state;
 
     const seed = Seed( input );
     // map the seed value to screen y value
@@ -123,6 +150,13 @@ class NeonRiot extends React.Component {
     const Tertiary = seed.tertiary.shape;
     const Secondary = seed.secondary.shape;
     const Primary = seed.primary.shape;
+
+    let hideStyle;
+    if (!showInput) {
+      hideStyle = {
+        transform: 'translateX(300px)',
+      };
+    }
 
     let content = <Loading className="center" />;
     if (windowSize.width !== 0) {
@@ -146,7 +180,8 @@ class NeonRiot extends React.Component {
             <Primary { ...setPropsFor('layer-primary') } />
           </svg>
 
-          <div className="inputContainer">
+          <div className="inputContainer" style={hideStyle}>
+            <div className="toggle"  onClick={this.toggleInput}>〈</div>
             <label className="inputLabel">
               <p>Enter Some Text</p>
               <input type="text" onChange={this.handleChange} value={input} />
