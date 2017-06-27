@@ -104,13 +104,19 @@ class NeonRiot extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.toggleInput = this.toggleInput.bind(this);
     this.state = {
-      showInput: true,
+      showInput: true
     }
   }
 
   componentDidMount () {
     const { actions } = this.props;
     actions.getWindowSize();
+    window.onhashchange = () => actions.locationHashUpdated( window.location.hash.substr(1) );
+    actions.locationHashUpdated(
+      window.location.hash.length > 1 ?
+      window.location.hash.substr(1) :
+      'Hello World'
+    );
   }
 
   componentWillUnmount () {
@@ -121,7 +127,7 @@ class NeonRiot extends React.Component {
     const { actions } = this.props;
     const { value } = event.target;
 
-    actions.updateInput(value);
+    actions.locationHashUpdated( value );
   }
 
   toggleInput() {
@@ -131,10 +137,10 @@ class NeonRiot extends React.Component {
   }
 
   render () {
-    const { windowSize, input } = this.props;
+    const { windowSize, hash } = this.props;
     const { showInput } = this.state;
 
-    const seed = Seed( input );
+    const seed = Seed( hash );
     // map the seed value to screen y value
     seed.horizonY = ( seed.horizonY / 100 ) * windowSize.height;
 
@@ -184,7 +190,7 @@ class NeonRiot extends React.Component {
             <div className="toggle"  onClick={this.toggleInput}>〈</div>
             <label className="inputLabel">
               <p>Enter Some Text</p>
-              <input type="text" onChange={this.handleChange} value={input} />
+              <input type="text" onChange={this.handleChange} value={hash} />
             </label>
           </div>
         </div>
