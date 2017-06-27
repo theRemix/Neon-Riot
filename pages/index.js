@@ -111,8 +111,7 @@ class NeonRiot extends React.Component {
   componentDidMount () {
     const { actions } = this.props;
     actions.getWindowSize();
-    window.onhashchange = actions.locationHashUpdated;
-
+    window.onhashchange = () => actions.locationHashUpdated( window.location.hash.substr(1) );
     actions.locationHashUpdated(
       window.location.hash.length > 1 ?
       window.location.hash.substr(1) :
@@ -128,7 +127,7 @@ class NeonRiot extends React.Component {
     const { actions } = this.props;
     const { value } = event.target;
 
-    actions.updateInput(value);
+    actions.locationHashUpdated( value );
   }
 
   toggleInput() {
