@@ -1,5 +1,5 @@
 import GlowFilterProvider from "../effects/GlowFilter";
-import { Mode, Layer } from "../../lib/constants";
+import { RAND, Mode, Layer } from "../../lib/constants";
 
 export default ({ windowSize, seed }) => {
   const layer = Layer.SECONDARY.toLowerCase();
@@ -20,8 +20,7 @@ export default ({ windowSize, seed }) => {
     height : 400,
   };
 
-  // seed[layer].mode
-  const mode = Mode.DOUBLE;
+  const mode = seed[layer].mode;
 
 
   // @TODO to come from constants
@@ -50,12 +49,7 @@ export default ({ windowSize, seed }) => {
     transformOrigin : `200px 200px`,
   };
 
-  // const rotate = {
-  //   transform : "rotate(180deg)",
-  //   transformOrigin : `100px 100px`,
-  // };
-
-  const splitX = seed[layer].splitX / 100 * size.width;
+  const splitX = seed[layer].splitX;
   let xOffset;
   let sizeOffset;
   if( mode === Mode.SINGLE ){
