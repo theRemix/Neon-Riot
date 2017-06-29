@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: neon-riot
+  namespace: neon-riot
+spec:
+  selector:
+    app: neon-riot
+  ports:
+    - port: 80
+      protocol: TCP
+  type: NodePort

@@ -1,0 +1,21 @@
+apiVersion: apps/v1beta1
+kind: Ingress
+metadata:
+  name: neon-riot
+  namespace: neon-riot
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  tls:
+  - hosts:
+    - neonriot.zone
+    secretName: app-tls
+  rules:
+  - host: neonriot.zone
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: neon-riot
+          servicePort: 80
