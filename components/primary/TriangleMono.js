@@ -16,44 +16,32 @@ export default ({ windowSize, seed }) => {
 
   const lineProps = {
     stroke: "#000", // keep this black
-    strokeWidth: "1px"
+    strokeWidth: "1.5px"
   };
 
   // @TODO to come from constants
   const size = {
-    width : 400,
-    height : 400,
-  };
-  const linesSize = {
-    width : 330,
-    height : 330,
-    x : 25,
-    y : 35,
+    width : 800,
+    height : 800,
   };
 
+  const offsetForGlow = 10;
+
+  const sizeOffset = size.width;
   return (
     <svg
-      x={( windowSize.width / 2 ) - ( size.width / 2 ) + 15}
-      y={( windowSize.height / 2 ) - ( size.height / 2 )}>
+      width={size.width+offsetForGlow+sizeOffset}
+      height={size.height+offsetForGlow+sizeOffset}
+      x={( windowSize.width / 2 ) - ( size.width / 4 ) + offsetForGlow/2}
+      y={( windowSize.height / 2 ) - ( size.height / 4 ) + offsetForGlow/2} >
       <defs>
         <GlowFilterDef color={glowColor} />
       </defs>
 
-      <svg
-        { ...size }
-        viewBox="0 0 223 195"
-        preserveAspectRatio="none"
-      >
-        <g filter={GlowFilter} transform="translate(5,5)">
+        <g filter={GlowFilter} transform="translate(0,0) scale(2)">
           <polygon { ...triangleProps } points="99.59 0 0 172.5 199.19 172.5 99.59 0"/>
         </g>
-      </svg>
-      <svg
-        { ...linesSize }
-        viewBox="0 0 240 205"
-        preserveAspectRatio="none"
-      >
-        <g transform="translate(5,5)">
+        <g transform="translate(30,38) scale(1.5)">
           <line { ...lineProps } x1="110.85" y1="0.5" x2="115.47" y2="0.5"/>
           <line { ...lineProps } x1="118.93" y1="6.5" x2="107.39" y2="6.5"/>
           <line { ...lineProps } x1="122.4" y1="12.5" x2="103.92" y2="12.5"/>
@@ -88,7 +76,6 @@ export default ({ windowSize, seed }) => {
           <line { ...lineProps } x1="222.86" y1="186.5" x2="3.46" y2="186.5"/>
           <line { ...lineProps } x1="226.32" y1="192.5" y2="192.5"/>
         </g>
-      </svg>
     </svg>
   )
 }
