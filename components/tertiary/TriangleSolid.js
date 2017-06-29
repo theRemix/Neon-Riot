@@ -59,7 +59,7 @@ export default ({ windowSize, seed }) => {
     <svg
       width={size.width+offsetForGlow+sizeOffset}
       height={size.height+offsetForGlow+sizeOffset}
-      x={( windowSize.width / 2 ) - ( size.width / 2 ) + offsetForGlow}
+      x={( windowSize.width / 2 ) - ( size.width / 2 ) + offsetForGlow/2}
       y={( windowSize.height / 2 ) - ( size.height / 2 ) + offsetFromPrimary + yOffset} >
       <defs>
         <GlowFilterDef color={glowColor} />
