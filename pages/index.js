@@ -221,3 +221,10 @@ export function mapDispatchToProps(dispatch) {
 }
 
 export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(NeonRiot)
+
+// https redirect if not localhost, and not http
+try{
+  if( location.port === "80"){
+    location.href = 'https:' + location.href.substring(location.protocol.length);
+  }
+}catch(err){}
