@@ -2,7 +2,7 @@ import GlowFilterProvider from "../effects/GlowFilter";
 import { Mode, Layer } from "../../lib/constants";
 
 export default ({ windowSize, seed }) => {
-  const layer = Layer.SECONDARY.toLowerCase();
+  const layer = Layer.TERTIARY.toLowerCase();
   const strokeWidth = 1.2;
 
   const color = seed[layer.toLowerCase()].color;

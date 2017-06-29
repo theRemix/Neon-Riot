@@ -182,8 +182,8 @@ class NeonRiot extends React.Component {
             <BG { ...setPropsFor('layer-bg') } />
             <Floor { ...setPropsFor('layer-floor') } />
             <Horizon { ...setPropsFor('layer-horizon') } />
-            <Tertiary { ...setPropsFor('layer-tertiary') } layer={ Layer.TERTIARY } />
-            <Secondary { ...setPropsFor('layer-secondary') } layer={ Layer.SECONDARY } />
+            <Tertiary { ...setPropsFor('layer-tertiary') } />
+            <Secondary { ...setPropsFor('layer-secondary') }  />
             <Primary { ...setPropsFor('layer-primary') } />
           </svg>
 

@@ -2,7 +2,7 @@ import GlowFilterProvider from "../effects/GlowFilter";
 import { Layer, Mode, RAND } from "../../lib/constants";
 
 export default ({ windowSize, seed }) => {
-  const layer = Layer.SECONDARY.toLowerCase();
+  const layer = Layer.TERTIARY.toLowerCase();
 
   const color = seed[layer].color;
   const glowColor = seed[layer].glowColor;
@@ -12,7 +12,7 @@ export default ({ windowSize, seed }) => {
     fill: color
   }
 
-  const mode = seed[layer].mode;
+  const mode = Mode.SINGLE;
 
   // @TODO to come from constants
   const size = {
@@ -23,7 +23,7 @@ export default ({ windowSize, seed }) => {
   // Layer.SECONDARY top of secondary touches 66% height of primary
   // Layer.TERTIARY bottom of tertiary touches 66% height of primary
   const offsetFromPrimary = ( mode === Mode.SINGLE ) ?
-    RAND.secondary.offsetY.MAX  :
+    RAND.tertiary.offsetY.MIN  :
     seed[layer].offsetY;
 
   const offsetForGlow = 10;
@@ -44,16 +44,16 @@ export default ({ windowSize, seed }) => {
     transformOrigin : `200px 200px`,
   };
 
-  const splitX = seed[layer].splitX / 100 * size.width;
+  // const splitX = seed[layer].splitX / 100 * size.width;
   let xOffset;
   let sizeOffset;
   if( mode === Mode.SINGLE ){
     xOffset = -size.width/2 - ( offsetForGlow / 2);
     sizeOffset = size.width;
   } else { // Mode.DOUBLE
-    xOffset = -splitX/2 - ( offsetForGlow / 2);
-    sizeOffset = splitX;
-    trans2.transform = `translateX(${ splitX }px) scale(2) rotate(180deg)`;
+    // xOffset = -splitX/2 - ( offsetForGlow / 2);
+    // sizeOffset = splitX;
+    // trans2.transform = `translateX(${ splitX }px) scale(2) rotate(180deg)`;
     size.width *= 2;
     size.height *= 2;
   }
