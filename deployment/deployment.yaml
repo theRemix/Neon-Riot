@@ -1,0 +1,17 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: neon-riot
+  namespace: neon-riot
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: neon-riot
+    spec:
+      containers:
+      - name: neon-riot
+        image: theremix/neon-riot:1.0.0
+        ports:
+        - containerPort: 80
