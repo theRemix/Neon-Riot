@@ -2,6 +2,7 @@ import React from 'react'
 import { bindActionCreators } from 'redux'
 import withRedux from 'next-redux-wrapper'
 import Head from 'next/head'
+import * as ReactGA from 'react-ga';
 import { initStore } from '../lib/store'
 import * as Actions from '../lib/actions';
 import { Layer } from '../lib/constants';
@@ -111,6 +112,9 @@ class NeonRiot extends React.Component {
   componentDidMount () {
     const { actions } = this.props;
     actions.getWindowSize();
+
+    ReactGA.initialize('UA-101501403-3');
+
     window.onhashchange = () => actions.locationHashUpdated( window.location.hash.substr(1) );
     actions.locationHashUpdated(
       window.location.hash.length > 1 ?
