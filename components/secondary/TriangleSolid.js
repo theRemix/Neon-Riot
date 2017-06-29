@@ -44,7 +44,7 @@ export default ({ windowSize, seed }) => {
     transformOrigin : `200px 200px`,
   };
 
-  const splitX = seed[layer].splitX / 100 * size.width;
+  const splitX = seed[layer].splitX;
   let xOffset;
   let sizeOffset;
   if( mode === Mode.SINGLE ){
