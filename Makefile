@@ -1,7 +1,7 @@
 IMAGE=theremix/neon-riot
 PORT=3000
 
-default: docker
+default: run
 
 docker:
 	docker build -t ${IMAGE} .
