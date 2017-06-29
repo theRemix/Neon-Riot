@@ -12,18 +12,17 @@ export default ({ windowSize, seed }) => {
     fill: color
   }
 
-  const mode = Mode.SINGLE;
+  const mode = seed[layer].mode;
 
   // @TODO to come from constants
   const size = {
-    width : 400,
-    height : 400
+    width : 800,
+    height : 800
   };
 
-  // Layer.SECONDARY top of secondary touches 66% height of primary
   // Layer.TERTIARY bottom of tertiary touches 66% height of primary
   const offsetFromPrimary = ( mode === Mode.SINGLE ) ?
-    RAND.tertiary.offsetY.MIN  :
+    RAND.tertiary.offsetY.MAX :
     seed[layer].offsetY;
 
   const offsetForGlow = 10;
@@ -34,36 +33,34 @@ export default ({ windowSize, seed }) => {
   } = GlowFilterProvider()
 
   const trans1 = {
-    transform : "translateX(0px) scale(2) rotate(180deg)",
+    transform : "translateY(0px) scale(2) rotate(180deg)",
     transformOrigin : `200px 200px`,
   };
 
   const trans2 = {
     // will be replaced ----v
-    transform : "translateX(0px) scale(2) rotate(180deg)",
+    transform : "translateY(0px) scale(2) rotate(180deg)",
     transformOrigin : `200px 200px`,
   };
 
-  // const splitX = seed[layer].splitX / 100 * size.width;
-  let xOffset;
+  const splitY = seed[layer].splitY;
+  let yOffset;
   let sizeOffset;
   if( mode === Mode.SINGLE ){
-    xOffset = -size.width/2 - ( offsetForGlow / 2);
-    sizeOffset = size.width;
+    yOffset = 0;
+    sizeOffset = 0;
   } else { // Mode.DOUBLE
-    // xOffset = -splitX/2 - ( offsetForGlow / 2);
-    // sizeOffset = splitX;
-    // trans2.transform = `translateX(${ splitX }px) scale(2) rotate(180deg)`;
-    size.width *= 2;
-    size.height *= 2;
+    yOffset = splitY/2 - ( offsetForGlow / 2);
+    sizeOffset = splitY;
+    trans2.transform = `translateY(${ -splitY }px) scale(2) rotate(180deg)`;
   }
 
   return (
     <svg
       width={size.width+offsetForGlow+sizeOffset}
       height={size.height+offsetForGlow+sizeOffset}
-      x={( windowSize.width / 2 ) - ( size.width / 2 ) + offsetForGlow + xOffset}
-      y={( windowSize.height / 2 ) - ( size.height / 2 ) + offsetFromPrimary} >
+      x={( windowSize.width / 2 ) - ( size.width / 2 ) + offsetForGlow}
+      y={( windowSize.height / 2 ) - ( size.height / 2 ) + offsetFromPrimary + yOffset} >
       <defs>
         <GlowFilterDef color={glowColor} />
       </defs>
