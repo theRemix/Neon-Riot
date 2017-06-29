@@ -12,6 +12,6 @@ spec:
     spec:
       containers:
       - name: neon-riot
-        image: theremix/neon-riot:1.0.0
+        image: theremix/neon-riot:1.0.2
         ports:
         - containerPort: 80

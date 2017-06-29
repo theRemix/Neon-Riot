@@ -224,7 +224,7 @@ export default withRedux(initStore, mapStateToProps, mapDispatchToProps)(NeonRio
 
 // https redirect if not localhost, and not http
 try{
-  if( location.port === "80"){
+  if( location.port === "" && location.protocol !== "https:"){
     location.href = 'https:' + location.href.substring(location.protocol.length);
   }
 }catch(err){}
