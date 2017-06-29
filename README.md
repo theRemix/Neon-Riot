@@ -38,6 +38,7 @@ yarn start
 │   ├── bg
 │   ├── horizon
 │   ├── floor
+│   ├── tertiary
 │   ├── secondary
 │   ├── primary
 │   └── ui
@@ -53,3 +54,16 @@ The components are listed in layered order.
 
 `horizon` will be rendered above bg, etc.
 
+## Building in Docker
+
+```
+make docker
+```
+
+## Running in Docker
+
+```
+make run
+```
+
+starts a server listening on port `3000`
