@@ -49,10 +49,10 @@ export default ({ windowSize, seed }) => {
         <GlowFilterDefInner color={glowColorInner} />
       </defs>
 
-      <g transform="translate(10,10)" filter={ GlowFilterBase }>
+      <g transform="translate(20,20)" filter={ GlowFilterBase }>
         <polygon { ...polyProps } points="101.58 2.3 1.99 174.8 201.18 174.8 101.58 2.3"/>
       </g>
-      <g transform="translate(23,26)" filter={ GlowFilterInner }>
+      <g transform="translate(33,36)" filter={ GlowFilterInner }>
         <polygon points="88.91 107.1 0 154 85.07 100.45 88.91 0 92.75 100.45 177.82 154 88.91 107.1"/>
       </g>
     </svg>
